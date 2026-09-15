@@ -1,4 +1,4 @@
-# tmux-command-palette
+# tmux-palette
 
 Fuzzy-search tmux's built-in commands and pre-fill tmux's own command-prompt
 with the one you pick — no themes, no config files, no runtime beyond
@@ -20,7 +20,7 @@ ready for you to add flags or args before running it yourself.
 Add to `~/.tmux.conf`:
 
 ```tmux
-set -g @plugin 'your-username/tmux-command-palette'
+set -g @plugin 'your-username/tmux-palette'
 ```
 
 Then `prefix + I` to install.
@@ -28,13 +28,13 @@ Then `prefix + I` to install.
 ### Manual
 
 ```bash
-git clone https://github.com/your-username/tmux-command-palette ~/.tmux/plugins/tmux-command-palette
+git clone https://github.com/your-username/tmux-palette ~/.tmux/plugins/tmux-palette
 ```
 
 Add to `~/.tmux.conf`:
 
 ```tmux
-run-shell ~/.tmux/plugins/tmux-command-palette/command-palette.tmux
+run-shell ~/.tmux/plugins/tmux-palette/command-palette.tmux
 ```
 
 Reload: `tmux source-file ~/.tmux.conf`.
