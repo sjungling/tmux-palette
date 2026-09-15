@@ -5,20 +5,11 @@ export PATH="$PATH:/opt/homebrew/bin:/usr/local/bin"
 
 : "${PALETTE_OUTFILE:?PALETTE_OUTFILE must be set}"
 
-tmux list-commands | while IFS= read -r line; do
-  name="${line%% *}"
-  rest="${line#"$name"}"
-  rest="${rest# }"
-  if [[ "$rest" == \(*\)* ]]; then
-    alias="${rest%%)*})"
-    rest="${rest#*) }"
-    header="$name $alias"
-  else
-    header="$name"
-  fi
-  if [ -n "$rest" ]; then
-    printf '%s\n    %s\0' "$header" "$rest"
-  else
-    printf '%s\0' "$header"
-  fi
-done | fzf --read0 --prompt="tmux> " --height=100% --layout=reverse --no-preview > "$PALETTE_OUTFILE"
+NL_INDENT=$'\n    '
+FORMAT=$'#{command_list_name}#{?command_list_alias, (#{command_list_alias}),}\t#{command_list_usage}'
+
+tmux list-commands -F "$FORMAT" |
+  while IFS=$'\t' read -r header rest; do
+    printf '%s%s\0' "$header" "${rest:+$NL_INDENT$rest}"
+  done |
+  fzf --read0 --prompt="tmux> " --height=100% --layout=reverse --no-preview > "$PALETTE_OUTFILE"
