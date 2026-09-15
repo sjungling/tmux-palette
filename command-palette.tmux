@@ -9,7 +9,7 @@ get_opt() {
   echo "${val:-$2}"
 }
 
-PALETTE_KEY="$(get_opt @command-palette-key 'P')"
+PALETTE_KEY="$(get_opt @command-palette-key 'C-p')"
 
 if ! command -v fzf >/dev/null 2>&1; then
   tmux bind-key -T prefix "$PALETTE_KEY" display-message "command-palette: fzf not found on PATH. Install fzf: https://github.com/junegunn/fzf#installation"

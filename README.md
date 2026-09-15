@@ -4,7 +4,7 @@ Fuzzy-search tmux's built-in commands and pre-fill tmux's own command-prompt
 with the one you pick — no themes, no config files, no runtime beyond
 [fzf](https://github.com/junegunn/fzf).
 
-Press `prefix + P`, type part of a command name (e.g. `split`), hit Enter.
+Press `prefix + C-p`, type part of a command name (e.g. `split`), hit Enter.
 tmux's command-prompt opens with `split-window ` already typed in, cursor
 ready for you to add flags or args before running it yourself.
 
@@ -41,7 +41,7 @@ Reload: `tmux source-file ~/.tmux.conf`.
 
 ## Usage
 
-- `prefix + P` opens the palette.
+- `prefix + C-p` opens the palette.
 - Type to fuzzy-filter. Matching works against the full command usage line,
   so it also matches on aliases (e.g. typing `attach` finds
   `attach-session (attach) ...`) and flags.
@@ -53,7 +53,7 @@ Reload: `tmux source-file ~/.tmux.conf`.
 ## Configuration
 
 Only one option — the trigger key, bound under the `prefix` table (default
-`P`):
+`C-p`):
 
 ```tmux
 set -g @command-palette-key 'M-p'
