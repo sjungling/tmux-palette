@@ -10,7 +10,7 @@ trap 'rm -f "$OUTFILE"' EXIT
 tmux display-popup -E -w 80% -h 60% -e "PALETTE_OUTFILE=$OUTFILE" "$DIR/picker.sh" || true
 
 if [ -s "$OUTFILE" ]; then
-  CMD="$(awk '{print $1}' "$OUTFILE")"
+  CMD="$(head -n1 "$OUTFILE" | awk '{print $1}')"
   if [ -n "$CMD" ]; then
     tmux command-prompt -T command -I "$CMD "
   fi
